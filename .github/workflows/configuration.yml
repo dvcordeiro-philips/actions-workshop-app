@@ -35,6 +35,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Run custom JavaScript action
-        uses: ./.github/actions/
+        uses: ./.github/actions/custom-js-action
         with:
           name: 'GitHub Actions Workshop'
