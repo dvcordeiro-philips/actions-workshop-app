@@ -4,40 +4,18 @@ on:
     branches:
       - main
 jobs:
-  test:
-    runs-on: ubuntu-latest # For all examples, change the runner type for Philips' self-hosted runners labels
-    defaults: # This sets the default folder for all steps in the job
-      run:
-        working-directory: app
+  matrix-build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12, 14, 16]
     steps:
       - uses: actions/checkout@v2
-      - name: Set up Node.js
+      - name: Set up Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
-          node-version: '16'
+          node-version: ${{ matrix.node-version }}
       - name: Install dependencies
         run: npm install
       - name: Run tests
         run: npm test
-
-  parallel-job-1:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Run parallel job 1
-        run: echo "Running parallel job 1"
-
-  parallel-job-2:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Run parallel job 2
-        run: echo "Running parallel job 2"
-
-  sequential-job:
-    runs-on: ubuntu-latest
-    needs: [parallel-job-1, parallel-job-2]
-    steps:
-      - uses: actions/checkout@v2
-      - name: Run sequential job
-        run: echo "Running sequential job"
