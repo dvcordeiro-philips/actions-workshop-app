@@ -21,6 +21,6 @@ jobs:
         run: npm test
 
   reusable-workflow:
-    uses: ./.github/workflows/reusable-workflow.yml
+    uses: ./.github/workflows/sample.yml
     with:
       some-input: some-value
