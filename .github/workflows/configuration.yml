@@ -20,7 +20,12 @@ jobs:
       - name: Run tests
         run: npm test
 
-  reusable-workflow:
+  reusable-workflow-1:
+    uses: ./.github/workflows/sample.yml
+    with:
+      some-input: some-value
+  
+  reusable-workflow-2:
     uses: ./.github/workflows/sample.yml
     with:
       some-input: some-value
