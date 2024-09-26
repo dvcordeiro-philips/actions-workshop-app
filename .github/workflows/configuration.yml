@@ -29,3 +29,12 @@ jobs:
     uses: ./.github/workflows/sample.yml
     with:
       some-input: some-value
+
+  custom-js-action:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run custom JavaScript action
+        uses: ./.github/actions/custom-js-action
+        with:
+          name: 'GitHub Actions Workshop'
